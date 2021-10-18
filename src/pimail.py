@@ -22,11 +22,14 @@ class email(object):
         self._title = title
         self._message = message
         self._to_emails = to_emails
-        self._password = "initpass"
+        if password != None:
+            self._password = password
+        else:
+            self._password = "initpass"
         if port != None:
             self._port = port
         else:
-            self._port = 0
+            self._port = 587
         if service != None: 
             self._service = service
         else:
@@ -88,7 +91,11 @@ class email(object):
         Send mail securely via SSL.
         """
         context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(self._service, self._port, context) as server:
+        try:
+            server = smtplib.SMTP(self._service, self._port)
+            server.ehlo()
+            server.starttls(context=context)
+            server.ehlo()
             server.login(self._from_email, self._password)
             finalMessage = f'''\
             Subject: {self._title}
@@ -96,6 +103,10 @@ class email(object):
             {self._message}
             '''
             server.sendmail(self._from_email, self._to_emails, finalMessage)
+        except Exception as e:
+            print(e)
+        finally:
+            server.quit()
 
     def sendmail(self):
         """
