@@ -36,6 +36,6 @@ class event(object):
             '''
         self._mail.setTitle(title)
         self._mail.setMessage(msg)
-        self._mail.sendmail_SSL()
+        self._mail.sendmail_securely()
 
     
