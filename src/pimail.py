@@ -86,7 +86,7 @@ class email(object):
     def setService(self):
         self._service
 
-    def sendmail_SSL(self):
+    def sendmail_securely(self):
         """
         Send mail securely via SSL.
         """
