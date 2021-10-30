@@ -27,7 +27,7 @@ class event(object):
             Authenticated user arrived home.
             '''
         else:
-            title = 'Intudaer Alert!'
+            title = 'Intruder Alert!'
             datestr = self._date.strftime("%d/%m/%Y %H:%M:%S")
             msg = f'''
             {datestr}
