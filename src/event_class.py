@@ -17,7 +17,7 @@ class event(object):
         if succ:
             self._auth  = True
 
-    def notif(self):
+    def create_notification(self):
         if self._auth:
             title = 'User authentication success!'
             datestr = self._date.strftime("%d/%m/%Y %H:%M:%S")
@@ -27,7 +27,7 @@ class event(object):
             Authenticated user arrived home.
             '''
         else:
-            title = 'Intruder Alert!'
+            title = 'Intudaer Alert!'
             datestr = self._date.strftime("%d/%m/%Y %H:%M:%S")
             msg = f'''
             {datestr}
@@ -36,6 +36,7 @@ class event(object):
             '''
         self._mail.setTitle(title)
         self._mail.setMessage(msg)
-        self._mail.sendmail_securely()
 
+    def send_notification(self):
+        self._mail.sendmail_SSL()
     
