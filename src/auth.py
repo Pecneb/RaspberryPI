@@ -27,7 +27,7 @@ def authenticate() -> bool:
     if signal == None:
         # send email notif if theres no signal
         print("Authentication failed, alert notification sent!")
-        make_notif(notification)
+        make_notif(notification, auth_success)
         return auth_success
     # continue auth process
     else:
@@ -41,14 +41,14 @@ def authenticate() -> bool:
             if gpio.input(TOUCH) != gpio.HIGH:
                 print("Authentication failed, alert notification sent!")
                 led.off(YELLOW)
-                make_notif(auth_success)
+                make_notif(notification, auth_success)
                 return auth_success
             time.sleep(0.5)
             now = time.time()
 
         # auth success
         auth_success = True
-        make_notif(auth_success)
+        make_notif(notification, auth_success)
         led.off(YELLOW) # yellow led off
         led.on(GREEN) # green led on
         print("Authentication success, welcome home!")

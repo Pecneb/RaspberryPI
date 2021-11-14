@@ -1,6 +1,7 @@
 from datetime import datetime
 from pimail import email
 import email_conf
+import db_addevent
 
 class event(object):
     def __init__(self) -> None:
@@ -8,7 +9,7 @@ class event(object):
         self._mail = email(email_conf.admin_email, title='placeholder', message='placeholder' ,password=email_conf.password,
         to_emails=email_conf.user_email)
         self._auth = False
-    
+
     def auth_success(self, succ: bool):
         '''
         sets the _auth attribute True, if user ath succeeds,  
@@ -16,6 +17,14 @@ class event(object):
         '''
         if succ:
             self._auth  = True
+
+    def getAuth(self):
+        return self._auth
+    
+    def getAuthInBit(self):
+        if self._auth:
+            return 1
+        return 0
 
     def create_notification(self):
         if self._auth:
@@ -38,5 +47,8 @@ class event(object):
         self._mail.setMessage(msg)
 
     def send_notification(self):
-        self._mail.sendmail_SSL()
+        self._mail.sendmail_securely()
+        db_addevent.main(self._date, self.getAuthInBit())
+
+    
     
