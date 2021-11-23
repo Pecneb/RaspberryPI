@@ -1,4 +1,4 @@
-import db_adduser
+from db_operations import add_user
 
 class User(object):
     """
@@ -42,13 +42,8 @@ class User(object):
 
     # getter for admin status
     def getIsadmin(self):
-        return self._email
+        return self._isadmin
 
     # setter for admin status
     def setIsadmin(self, isadmin):
         self._isadmin = isadmin
-
-    # save user to database
-    def add2db(self):
-        con = db_adduser.create_connection(path)
-        db_adduser.create_user(con, self.getName(), self.getEmail(), self.getPassword(), self.getIsadmin())

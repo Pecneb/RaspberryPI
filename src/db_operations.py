@@ -12,6 +12,7 @@ def create_connection(db_file):
     conn = None
     try:
         conn = sqlite3.connect(db_file)
+        print("DB connection created!")
         return conn
     except Error as e:
         print(e)
@@ -43,16 +44,15 @@ def add_event(datetime, authenticated):
 def get_events():
     conn = create_connection(PATH)
 
-    cur = conn.cursor()
-        
-    sql_query = """SELECT * FROM events"""
-    cur.execute(sql_query)
-
-    r = cur.fetchall()
-    
-    conn.close()
-
-    return r
+    try:
+        cur = conn.cursor()
+        sql_query = """SELECT * FROM events"""
+        cur.execute(sql_query)
+        r = cur.fetchall()
+        conn.close()
+        return r
+    except Error as e:
+        print(e)
 
 def add_user(name, email, password, isadmin):
     conn = create_connection(PATH)
@@ -75,10 +75,10 @@ def get_data():
 
     try:
         query = """SELECT * FROM users"""
-        cur = con.cursor()
+        cur = conn.cursor()
         cur.execute(query)
         data = cur.fetchall()
-        con.close()
+        conn.close()
         return data
     except Error as e:
         print(e)

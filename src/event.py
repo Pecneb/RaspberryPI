@@ -1,7 +1,6 @@
 from datetime import datetime
 from pimail import email
 import email_conf
-import db_addevent
 
 class Event(object):
     def __init__(self) -> None:
@@ -48,7 +47,6 @@ class Event(object):
 
     def send_notification(self):
         self._mail.sendmail_securely()
-        db_addevent.main(self._date, self.getAuthInBit())
 
     
     
