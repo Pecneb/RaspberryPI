@@ -25,6 +25,7 @@ def sql_add_event(conn, datetime, authenticated):
     try:
         c = conn.cursor()
         c.execute(sql_addevent, event)
+        conn.commit()
     except Error as e:
         print(e)
 
@@ -32,5 +33,4 @@ def main(datetime, authenticated):
     path = "sqlite/db/rpi.db"
     conn = create_connection(path)
     sql_add_event(conn, datetime, authenticated)
-    conn.commit()
     conn.close()
