@@ -34,7 +34,7 @@ class User(object):
 
     # getter for password
     def getPassword(self):
-        return self.password
+        return self._password
 
     # setter for password
     def setPassword(self, password):
