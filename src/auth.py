@@ -4,9 +4,9 @@ from gpio_init import LED, YELLOW, GREEN, TOUCH, BUZZER
 import time
 import led_sensor as led
 import buzzer_sensor as buzzer
-from event_class import event
+from event_class import Event
 
-def make_notif(notif : event, auth_succ : bool):
+def make_notif(notif : Event, auth_succ : bool):
     notif.auth_success(auth_succ)
     notif.create_notification()
     notif.send_notification()
@@ -18,7 +18,7 @@ def authenticate() -> bool:
     '''
     print("Authentication process started!")
     
-    notification = event()
+    notification = Event()
     auth_success = False
 
     # touch sensor waits for finger print input for 10 sec
