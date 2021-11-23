@@ -3,7 +3,7 @@ from pimail import email
 import email_conf
 import db_addevent
 
-class event(object):
+class Event(object):
     def __init__(self) -> None:
         self._date = datetime.now()
         self._mail = email(email_conf.admin_email, title='placeholder', message='placeholder' ,password=email_conf.password,
