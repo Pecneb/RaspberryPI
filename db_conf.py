@@ -1,6 +1,8 @@
 import os
 import sqlite3
-from sqlite3 import Error 
+from sqlite3 import Error
+
+PATH = "sqlite/db/rpi.db"
 
 def createdb(db_file):
     '''
@@ -49,7 +51,7 @@ def main():
     '''
 
     # define database path
-    path = "sqlite/db/rpi.db"
+    path = PATH
     
     # create database
     createdb(path)

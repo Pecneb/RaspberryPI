@@ -2,6 +2,8 @@ import os
 import sqlite3
 from sqlite3 import Error
 
+PATH = "sqlite/db/rpi.db"
+
 def create_connection(db_file):
     '''
     Create a database connection.
@@ -30,7 +32,7 @@ def sql_add_event(conn, datetime, authenticated):
         print(e)
 
 def main(datetime, authenticated):
-    path = "sqlite/db/rpi.db"
+    path = PATH
     conn = create_connection(path)
     sql_add_event(conn, datetime, authenticated)
     conn.close()
