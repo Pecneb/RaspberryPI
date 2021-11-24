@@ -1,17 +1,8 @@
 import RPi.GPIO as gpio
-import pimail
 from gpio_init import LED, YELLOW, GREEN, TOUCH, BUZZER
 import time
 import led_sensor as led
 import buzzer_sensor as buzzer
-from event import Event
-from db_operations import add_event
-
-def make_notif(notif : Event, auth_succ : bool):
-    notif.auth_success(auth_succ)
-    notif.create_notification()
-    notif.send_notification()
-    add_event(notif._date, notif.getAuthInBit())
 
 def authenticate() -> bool:
     '''

@@ -9,7 +9,7 @@ then the receiver email / emails in an array.
 The standart port for SSL is 465.
 The standart email service is smtp.gmail.com.
 '''
-class email(object):
+class Email(object):
 
     # init email
     def __init__(self, from_email, title, message, port=None,
@@ -103,6 +103,7 @@ class email(object):
             {self._message}
             '''
             server.sendmail(self._from_email, self._to_emails, finalMessage)
+            print("Email sent successfully!")
         except Exception as e:
             print(e)
         finally:

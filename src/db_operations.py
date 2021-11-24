@@ -19,6 +19,19 @@ def create_connection(db_file):
 
     return conn
 
+def sql_query(sql_script):
+    conn = create_connection(PATH)
+    try:
+        cur = conn.cursor()
+        cur.execute(sql_script)
+        data = cur.fetchall()
+        conn.close()
+        print("Successful SQL Query execution!")
+        return data
+    except Error as e:
+        print(e)
+
+
 def add_event(datetime, authenticated):
     conn = create_connection(PATH)
 
@@ -42,17 +55,8 @@ def add_event(datetime, authenticated):
     return False
 
 def get_events():
-    conn = create_connection(PATH)
-
-    try:
-        cur = conn.cursor()
-        sql_query = """SELECT * FROM events"""
-        cur.execute(sql_query)
-        r = cur.fetchall()
-        conn.close()
-        return r
-    except Error as e:
-        print(e)
+    sql_script = """SELECT * FROM events"""
+    return sql_query(sql_script)
 
 def add_user(name, email, password, isadmin):
     conn = create_connection(PATH)
@@ -70,15 +74,28 @@ def add_user(name, email, password, isadmin):
         print(e)
     return False
 
-def get_data():
-    conn = create_connection(PATH)
+def get_user():
+    sql_script = """SELECT * FROM users"""
+    return sql_query(sql_script)
 
-    try:
-        query = """SELECT * FROM users"""
-        cur = conn.cursor()
-        cur.execute(query)
-        data = cur.fetchall()
-        conn.close()
-        return data
-    except Error as e:
-        print(e)
+def emails2event():
+    data = get_user()
+    emails = []
+    for user in data:
+        emails.append(user[3])
+    return emails
+
+def admin2event():
+    data = get_user()
+    adminCreds = [None, None]
+    for user in data:
+        if user[4] == 1:
+            # extract admin email from db
+            adminCreds[0] = user[3]
+            # extract admin password from db
+            adminCreds[1] = user[2]
+            break
+    if (adminCreds[0] is None) or (adminCreds[1] is None):
+        print("Error: No admin found in the system.")
+        return None
+    return adminCreds
