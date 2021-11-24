@@ -1,11 +1,15 @@
 import RPi.GPIO as gpio
 
+"""
+Here we can set up the gpio pins of the RaspberryPI.
+The global variables below can be changed.
+"""
 LED = 8
-PIR = 10
-BUZZER = 12
-TOUCH = 11
-YELLOW = 15
-GREEN = 13
+GREEN = 10 # 13
+YELLOW = 11 # 15
+PIR = 12 # 10
+BUZZER = 13 # 12
+TOUCH = 15 # 11
 
 def init():
     print("Initialize board...")

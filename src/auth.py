@@ -4,7 +4,7 @@ from gpio_init import LED, YELLOW, GREEN, TOUCH, BUZZER
 import time
 import led_sensor as led
 import buzzer_sensor as buzzer
-from event_class import Event
+from event import Event
 from db_operations import add_event
 
 def make_notif(notif : Event, auth_succ : bool):
