@@ -3,6 +3,7 @@ from gpio_init import LED, YELLOW, GREEN, TOUCH, BUZZER
 import time
 import led_sensor as led
 import buzzer_sensor as buzzer
+from notification import make_notif
 
 def authenticate() -> bool:
     '''
