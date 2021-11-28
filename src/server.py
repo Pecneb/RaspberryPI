@@ -15,7 +15,7 @@ def main():
         # start pir sensor, and look out for any motion in room
         # when pir sends signal then start_alert is called
         while True:
-            signal = gpio.wait_for_edge(PIR, gpio.RISING)
+            signal = gpio.wait_for_edge(PIR, gpio.RISING, timeout=2000)
             if signal == None:
                 led.on(LED)
                 time.sleep(1)
