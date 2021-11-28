@@ -1,0 +1,12 @@
+colorzero
+cycler
+gpiozero
+kiwisolver
+matplotlib
+numpy
+opencv-python
+Pillow
+pyparsing
+python-dateutil
+RPi.GPIO
+six
