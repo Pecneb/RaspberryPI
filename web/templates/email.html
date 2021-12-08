@@ -1,50 +1,46 @@
 <!DOCTYPE html>
 <head>
     <!--Materialize stylesheet link-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"/>
+    <link type="text/css" rel="stylesheet" href="static/materialize.css"/>
     <title>Security Alerts</title>
 </head>
 <body>
     <nav>
         <div class="nav-wrapper">
-            <a href="index.html" class="brand-logo" style="margin-left: 5%;">Security Alerts</a>
+            <a href="/" class="brand-logo" style="margin-left: 5%;">Security Alerts</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="index.html">SecurityAlerts</a></li>
-                <li><a href="email.html">SignUp</a></li>
+              <li><a href="{{ url_for('index') }}">SecurityAlerts</a></li>
+              <li><a href="{{ url_for('register') }}">SignUp</a></li>
             </ul>
         </div>
     </nav>
     <div class="container" style="margin-top: 5%;">    
         <div class="row">
-            <form class="col s12">
+          <form class="col s12" action="{{ url_for('register') }}" method="post">
             <div class="row">
                 <div class="input-field col s6">
-                <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                <input placeholder="Placeholder" name="username" type="text" class="validate">
                 <label for="first_name">First Name</label>
-                </div>
-                <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Last Name</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input id="password" type="password" class="validate">
+                <input id="password" name="password" class="validate">
                 <label for="password">Password</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                <input id="email" type="email" class="validate">
+                <input name="email" type="email" class="validate">
                 <label for="email">Email</label>
                 </div>
             </div>
-            </form>          
             <button class="btn waves-effect waves-light" type="submit" name="action">
                 Sign Up
             </button>
+            </form>
         </div>
     </div>
     <!--Materialize javascript link-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="static/materialize.js"></script>
 </body>

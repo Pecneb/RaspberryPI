@@ -1,5 +1,6 @@
 from src.db_operations import add_user
 import sys
+import argparse
 
 def main():
     '''Register user account via command line.'''
