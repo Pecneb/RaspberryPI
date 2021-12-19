@@ -4,6 +4,7 @@ import time
 import led_sensor as led
 import buzzer_sensor as buzzer
 from notification import make_notif
+from event import Event
 
 def authenticate() -> bool:
     '''
@@ -12,8 +13,8 @@ def authenticate() -> bool:
     '''
     print("Authentication process started!")
     
-    notification = Event()
     auth_success = False
+    notification = Event()
 
     # touch sensor waits for finger print input for 10 sec
     signal = gpio.wait_for_edge(TOUCH, gpio.RISING, timeout=10000)
