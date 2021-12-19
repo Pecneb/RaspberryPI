@@ -2,7 +2,7 @@ import os
 import sqlite3
 from sqlite3 import Error
 
-PATH = os.path.join("..","sqlite", "db", "rpi.db")
+PATH = os.path.join("sqlite", "db", "rpi.db")
 
 def create_connection(db_file):
     '''
