@@ -8,6 +8,7 @@ Jinja2
 kiwisolver
 MarkupSafe
 numpy
+opencv-python
 packaging
 Pillow
 pyparsing
