@@ -12,5 +12,5 @@ def start_alert():
     led.on(LED)
     buzzer.on(BUZZER)
     # event object should be created here
-    authenticate()
+    return authenticate()
     

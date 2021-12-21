@@ -9,6 +9,7 @@ kiwisolver
 MarkupSafe
 numpy
 opencv-python
+matplotlib
 packaging
 Pillow
 pyparsing
@@ -17,3 +18,4 @@ setuptools-scm
 six
 tomli
 Werkzeug
+RPi.GPIO
