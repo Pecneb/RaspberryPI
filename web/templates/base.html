@@ -1,19 +1,22 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Flaskr</title>
+<title>{% block title %}{% endblock %} - SecurityCam</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='materialize.css') }}">
-<nav>
-    <h1>Flaskr</h1>
-    <ul>
-        {% if g.user %}
-            <li><span>{{ g.user['username'] }}</span>
-            <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-        {% else %}
-            <li><a href="{{ url_for('auth.register') }}">Register</a>
-            <li><a href="{{ url_for('auth.login') }}">Log In</a>
-        {% endif %}
-    </ul>
+<nav class="row">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">SecurityCam</a>
+        <ul>
+            {% if g.user %}
+                <li><span>{{ g.user['username'] }}</span>
+                <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+            {% else %}
+                <li><a href="{{ url_for('auth.register') }}">Register</a>
+                <li><a href="{{ url_for('auth.login') }}">Log In</a>
+            {% endif %}
+        </ul>
+    </div>
 </nav>
-<section class="content">
+<body class="grey darken-4 white-text">
+<section class="content row">
     <header>
         {% block header %}{% endblock %}
     </header>
@@ -22,4 +25,5 @@
     {% endfor %}
     {% block content %}{% endblock %}
 </section>
+</body>
 <script src="{{ url_for('static', filename='materialize.js') }}"></script>

@@ -1,9 +1,9 @@
 import functools
-from flask import (Blueprint, flash, g, redirect, render_template, request, sessions, url_for)
+from flask import (Blueprint, flash, g, redirect, render_template, request, session, url_for)
 from werkzeug.security import check_password_hash, generate_password_hash
 from web.db import get_db
 
-bp = Blueprint('auth', __name__)
+bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
@@ -35,7 +35,7 @@ def register():
 
     return render_template('auth/register.html')
 
-@app.route('/login', methods=('GET', 'POST'))
+@bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -45,7 +45,7 @@ def login():
         error = None
 
         user = db.execute(
-            'SELECT * FROM user WHERE name = ?',
+            'SELECT * FROM users WHERE name = ?',
             (username,)
         ).fetchone()
 
@@ -57,7 +57,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for(index))
+            return redirect(url_for('index'))
 
         flash(error)
 
@@ -70,7 +70,7 @@ def load_logged_in_user():
         g.user = None
     else:
         g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id)
+            'SELECT * FROM users WHERE id = ?', (user_id,)
         ).fetchone()
 
 @bp.route('/logout')
@@ -78,7 +78,7 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
-def ling_required(view):
+def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
