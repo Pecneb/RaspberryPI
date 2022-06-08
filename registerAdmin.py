@@ -1,6 +1,6 @@
 from src.db_operations import add_user
-import sys
 import argparse
+from werkzeug.security import generate_password_hash
 
 def main():
     '''Register admin account via command line.'''
@@ -12,7 +12,7 @@ def main():
 
     username = args.username
     email = args.email
-    password = args.password
+    password = generate_password_hash(args.password)
 
     add_user(username, email, password, 1)
 
